@@ -19,6 +19,8 @@ tabuleiro2 = []
 tabuleiro_jogador1 = []
 tabuleiro_jogador2 = []
 
+mensagem_final = 'Suas jogadas encerraram'
+
 pontuacao_jogador1 = 0
 pontuacao_jogador2 = 0
 
@@ -93,6 +95,11 @@ def preencher_navios(nro_jogadores):
 						tabuleiro2[linha][coluna + v] = 'N'
 
 					navios_no_campo += 2
+
+def mostrar_resultado_final(nro_jogadores):
+	if nro_jogadores == 1:
+		print('\nResultados da partida:')
+		print(f'\nPontuação atingida: {pontuacao_jogador1}')
 	
 #Início
 
@@ -152,15 +159,13 @@ preencher_bombas(qtd_jogadores)
 if(qtd_jogadores == 1):
 	print('\nO jogo irá iniciar')
 
-	for line123 in tabuleiro1:
-		print ('  '.join(map(str, line123)))
-
 	escolhendo_linha = True
 	escolhendo_coluna = True
 	jogada_valida = False
+	nro_jogadas_validas = 0
 
 	while jogo_rodando == True:
-		for i in range(config_dificuldade['nro_jogadas']):
+		while nro_jogadas_validas != config_dificuldade['nro_jogadas']:
 			print_tabuleiro_jogador1()
 
 			jogada_valida = False		
@@ -193,45 +198,32 @@ if(qtd_jogadores == 1):
 						pontuacao_jogador1 += 10
 
 						tabuleiro1[posicao_linha][posicao_coluna] = 'Ç'
-						tabuleiro_jogador1[posicao_linha][posicao_coluna] = 'X'						
+						tabuleiro_jogador1[posicao_linha][posicao_coluna] = 'N'						
 
+						nro_jogadas_validas += 1
 						jogada_valida = True
-					elif(tabuleiro1[posicao_linha][posicao_coluna] == '-'):
-						pontuacao_jogador1 = pontuacao_jogador1
 
+					if(tabuleiro1[posicao_linha][posicao_coluna] == '-'):
 						tabuleiro1[posicao_linha][posicao_coluna] = 'Ç'
-						tabuleiro_jogador1[posicao_linha][posicao_coluna] = 'X'						
+						tabuleiro_jogador1[posicao_linha][posicao_coluna] = 'A'						
 
+						nro_jogadas_validas += 1
 						jogada_valida = True
-					else:
-						print('BOMBA')
 
+					if (tabuleiro1[posicao_linha][posicao_coluna] == 'B'):
 						tabuleiro1[posicao_linha][posicao_coluna] = 'Ç'
-						tabuleiro_jogador1[posicao_linha][posicao_coluna] = 'X'
+						tabuleiro_jogador1[posicao_linha][posicao_coluna] = 'B'
 						
+						mensagem_final = 'Você encontrou uma boma! Jogo encerrado'
 						jogada_valida = True
-
+						nro_jogadas_validas = config_dificuldade['nro_jogadas']
 						jogo_rodando = False				
 				else:
-					jogada_valida = False			
+					jogada_valida = False		
 		
 		print_tabuleiro_jogador1()
-		jogo_rodando = False		
+		jogo_rodando = False
 
-# Print
+	print(f'\n{mensagem_final}')
 
-print('')
-
-for line123 in tabuleiro1:
-  print ('  '.join(map(str, line123)))
-
-print('')
-print('')
-
-print(pontuacao_jogador1)
-
-print('')
-print('')
-
-# for line123 in tabuleiro2:
-#   print ('  '.join(map(str, line123)))
+mostrar_resultado_final(qtd_jogadores)
