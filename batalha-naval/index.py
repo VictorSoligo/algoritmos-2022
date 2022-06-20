@@ -26,15 +26,14 @@ pontuacao_jogador2 = 0
 
 # Funções
 
-def print_tabuleiro_jogador1():
-  print('')
-  for line in tabuleiro_jogador1:
-    print ('  '.join(map(str, line)))
-
-def print_tabuleiro_jogador2():
-  print('')	
-  for line in tabuleiro_jogador2:
-    print ('  '.join(map(str, line)))
+def print_tabuleiro_jogador(jogador):
+	print('')
+	if(jogador == 1):
+		for line in tabuleiro_jogador1:
+			print('  '.join(map(str, line)))
+	else:
+		for line in tabuleiro_jogador2:
+			print ('  '.join(map(str, line)))
 
 def preencher_bombas(nro_jogadores):
 	quantidade_bombas = config_dificuldade['qtd_bombas']
@@ -101,7 +100,7 @@ def mostrar_resultado_final(nro_jogadores):
 		print('\nResultados da partida:')
 		print(f'\nPontuação atingida: {pontuacao_jogador1}')
 	
-#Início
+# Início
 
 while perguntas_iniciciais_validas == False:
 	while (qtd_jogadores == 0):
@@ -166,7 +165,7 @@ if(qtd_jogadores == 1):
 
 	while jogo_rodando == True:
 		while nro_jogadas_validas != config_dificuldade['nro_jogadas']:
-			print_tabuleiro_jogador1()
+			print_tabuleiro_jogador(1)
 
 			jogada_valida = False		
 			
@@ -221,7 +220,7 @@ if(qtd_jogadores == 1):
 				else:
 					jogada_valida = False		
 		
-		print_tabuleiro_jogador1()
+		print_tabuleiro_jogador(1)
 		jogo_rodando = False
 
 	print(f'\n{mensagem_final}')
