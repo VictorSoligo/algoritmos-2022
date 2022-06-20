@@ -19,17 +19,26 @@ tabuleiro2 = []
 tabuleiro_jogador1 = []
 tabuleiro_jogador2 = []
 
-mensagem_final = 'Suas jogadas encerraram'
+mensagem_final = 'Suas jogadas encerraram!'
 
 pontuacao_jogador1 = 0
 pontuacao_jogador2 = 0
 
 # Funções
-
 def print_tabuleiro_jogador(jogador):
 	print('')
+
+	for i in range(10):
+		if i == 0:
+			print(f'  {i}', end="  ",),
+		else:
+			print(i, end="  ",),
+
+	print('')
+
 	if(jogador == 1):
-		for line in tabuleiro_jogador1:
+		for i, line in enumerate(tabuleiro_jogador1):
+			print(i, end=' ')
 			print('  '.join(map(str, line)))
 	else:
 		for line in tabuleiro_jogador2:
@@ -97,8 +106,10 @@ def preencher_navios(nro_jogadores):
 
 def mostrar_resultado_final(nro_jogadores):
 	if nro_jogadores == 1:
+		print('\n=======================================')
 		print('\nResultados da partida:')
 		print(f'\nPontuação atingida: {pontuacao_jogador1}')
+		print('\n=======================================')
 	
 # Início
 
@@ -120,7 +131,6 @@ while perguntas_iniciciais_validas == False:
 			dificuldade = 1
 
 			config_dificuldade = {
-				'nivel': 1,
 				'qtd_bombas': 30,
 				'qtd_navios': 20,
 				'nro_jogadas': 10,
@@ -129,7 +139,6 @@ while perguntas_iniciciais_validas == False:
 			dificuldade = 2
 
 			config_dificuldade = {
-				'nivel': 2,
 				'qtd_bombas': 100,
 				'qtd_navios': 50,
 				'nro_jogadas': 20,			
@@ -176,14 +185,6 @@ if(qtd_jogadores == 1):
 			posicao_coluna = 0
 
 			while jogada_valida == False:
-				while escolhendo_linha == True:
-					posicao_linha = int(input(f'\nEm qual linha você deseja jogar: (0-{largura_tabuleiro - 1})\n'))
-
-					if (posicao_linha >= 0) and (posicao_linha <= (largura_tabuleiro - 1)):
-						escolhendo_linha = False
-					else:
-						print('\nDigite um valor válido!\n')
-						
 				while escolhendo_coluna == True:
 					posicao_coluna = int(input(f'\nEm qual coluna você deseja jogar: (0-{largura_tabuleiro - 1})\n'))
 
@@ -191,6 +192,14 @@ if(qtd_jogadores == 1):
 						escolhendo_coluna = False
 					else:
 						print('\nDigite um valor válido!')
+
+				while escolhendo_linha == True:
+					posicao_linha = int(input(f'\nEm qual linha você deseja jogar: (0-{largura_tabuleiro - 1})\n'))
+
+					if (posicao_linha >= 0) and (posicao_linha <= (largura_tabuleiro - 1)):
+						escolhendo_linha = False
+					else:
+						print('\nDigite um valor válido!\n')
 
 				if(tabuleiro1[posicao_linha][posicao_coluna] != 'Ç'):
 					if(tabuleiro1[posicao_linha][posicao_coluna] == 'N'):
@@ -213,12 +222,16 @@ if(qtd_jogadores == 1):
 						tabuleiro1[posicao_linha][posicao_coluna] = 'Ç'
 						tabuleiro_jogador1[posicao_linha][posicao_coluna] = 'B'
 						
-						mensagem_final = 'Você encontrou uma boma! Jogo encerrado'
+						mensagem_final = 'Você encontrou uma boma!'
 						jogada_valida = True
 						nro_jogadas_validas = config_dificuldade['nro_jogadas']
 						jogo_rodando = False				
 				else:
-					jogada_valida = False		
+					print('\nVocê já jogou nesta posição!')
+
+					jogada_valida = False	
+					escolhendo_linha = True
+					escolhendo_coluna = True	
 		
 		print_tabuleiro_jogador(1)
 		jogo_rodando = False
