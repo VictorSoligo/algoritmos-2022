@@ -178,7 +178,7 @@ def rodada_jogador1():
 						tabuleiro1[posicao_linha][posicao_coluna] = 'Ç'
 						tabuleiro_jogador1[posicao_linha][posicao_coluna] = 'B'
 						
-						mensagem_final = 'Você encontrou uma boma!'
+						mensagem_final = 'Você encontrou uma bomba!'
 						jogada_valida = True
 						nro_jogadas_validas = config_dificuldade['nro_jogadas']
 						rodada = False				
@@ -193,6 +193,7 @@ def rodada_jogador1():
 		rodada = False
 
 	print(f'\n{mensagem_final}')
+
 	return pontuacao_jogador1
 
 def rodada_jogador2():
@@ -254,7 +255,7 @@ def rodada_jogador2():
 						tabuleiro2[posicao_linha][posicao_coluna] = 'Ç'
 						tabuleiro_jogador2[posicao_linha][posicao_coluna] = 'B'
 						
-						mensagem_final = 'Você encontrou uma boma!'
+						mensagem_final = 'Você encontrou uma bomba!'
 						jogada_valida = True
 						nro_jogadas_validas = config_dificuldade['nro_jogadas']
 						rodada = False				
@@ -269,6 +270,7 @@ def rodada_jogador2():
 		rodada = False
 
 	print(f'\n{mensagem_final}')
+	
 	return pontuacao_jogador2
 
 def mostrar_resultado_final(nro_jogadores):
