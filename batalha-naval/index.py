@@ -270,7 +270,7 @@ def rodada_jogador2():
 		rodada = False
 
 	print(f'\n{mensagem_final}')
-	
+
 	return pontuacao_jogador2
 
 def mostrar_resultado_final(nro_jogadores):
@@ -293,6 +293,7 @@ def mostrar_resultado_final(nro_jogadores):
 	
 # Início
 
+# Configuração inicial da partida
 while perguntas_iniciciais_validas == False:
 	while (qtd_jogadores == 0):
 		resposta = int(input('Quantos jogadores irão jogar? (1/2)\n'))
@@ -331,6 +332,7 @@ while perguntas_iniciciais_validas == False:
 
 	perguntas_iniciciais_validas = True
 
+# Gera a matriz dos tabuleiros com base no nro de jogadores
 if(qtd_jogadores == 1):
 	tabuleiro1 = [['-' for x in range(largura_tabuleiro)] for y in range(altura_tabuleiro)]
 	
@@ -342,13 +344,17 @@ elif(qtd_jogadores == 2):
 	tabuleiro_jogador1 = [['-' for x in range(largura_tabuleiro)] for y in range(altura_tabuleiro)]	
 	tabuleiro_jogador2 = [['-' for x in range(largura_tabuleiro)] for y in range(altura_tabuleiro)]		
 
+# Preenche os tabuleiros com bombas e navios 
 preencher_navios(qtd_jogadores)
 preencher_bombas(qtd_jogadores)
 
+# Vez do jogador 1
 pontuacao_jogador_1 = rodada_jogador1()
 
+# Vez do jogador 2
 if qtd_jogadores == 2:
 	print('\nAgora é a vez do jogador 2!')
 	pontuacao_jogador_2 = rodada_jogador2()
 
+# Mostra oss resultados finais da partida
 mostrar_resultado_final(qtd_jogadores)
