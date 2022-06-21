@@ -1,4 +1,6 @@
-# primeiro indice é a linha, segundo a coluna
+# Alunos: Victor Hugo Soligo e Gabriel Marafon
+# Projeto de algorítmos
+
 import random
 
 # Variáveis
@@ -164,12 +166,16 @@ def rodada_jogador1():
 						tabuleiro1[posicao_linha][posicao_coluna] = 'Ç'
 						tabuleiro_jogador1[posicao_linha][posicao_coluna] = 'N'						
 
+						print('\nVocê encontrou um navio!')
+
 						nro_jogadas_validas += 1
 						jogada_valida = True
 
 					if(tabuleiro1[posicao_linha][posicao_coluna] == '-'):
 						tabuleiro1[posicao_linha][posicao_coluna] = 'Ç'
 						tabuleiro_jogador1[posicao_linha][posicao_coluna] = 'A'						
+
+						print('\nTiro na água!')
 
 						nro_jogadas_validas += 1
 						jogada_valida = True
@@ -241,12 +247,16 @@ def rodada_jogador2():
 						tabuleiro2[posicao_linha][posicao_coluna] = 'Ç'
 						tabuleiro_jogador2[posicao_linha][posicao_coluna] = 'N'						
 
+						print('\nVocê encontrou um navio!')
+
 						nro_jogadas_validas += 1
 						jogada_valida = True
 
 					if(tabuleiro2[posicao_linha][posicao_coluna] == '-'):
 						tabuleiro2[posicao_linha][posicao_coluna] = 'Ç'
 						tabuleiro_jogador2[posicao_linha][posicao_coluna] = 'A'						
+
+						print('\nTiro na água!')
 
 						nro_jogadas_validas += 1
 						jogada_valida = True
