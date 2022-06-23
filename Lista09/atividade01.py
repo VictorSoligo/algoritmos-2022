@@ -3,7 +3,7 @@ primos = []
 posicoes = []
 
 def e_primo(numero):
-	for val in range(2, n):
+	for val in range(2, numero):
 		if numero % val == 0:
 			return False
 
